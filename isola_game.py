@@ -36,7 +36,6 @@ class isola_game(object):
             self.clock = [time_limit_1, time_limit_1]
         else:
             self.clock = [time_limit_1, time_limit_2]
-        print(self.clock)
         self.start_time = 0
         for p in self.players:
             p._game = self

@@ -20,7 +20,7 @@ def play_tournament(games_per_pairing, *players, verbose=False, log=False, time_
             p = [players[i], players[j]]
             shuffle(p)
             for _ in range(games_per_pairing):
-                winner = p[play_game(*p, time_limit=time_limit, log=log)]
+                winner = p[play_game(*p, time_limit_1=time_limit, log=log)]
                 if verbose:
                     print("{0[0]}{1} vs {0[1]}{2}".format(p,"*" if p[0]==winner else "", "*" if p[1]==winner else ""))
                 wins[winner] += 1
@@ -35,5 +35,5 @@ if __name__ == '__main__':
     p1 = random_player("bob")
     p2 = random_player("carol")
     hum = human_player("kaplan")
-#     play_tournament(1000, p0, p1, p2, verbose=False, time_limit=10)
-    play_game(p0, p1, True, True)
+#     play_tournament(1000, p0, p1, p2, verbose=True, time_limit=10)
+    play_game(p0, p1, True, True, 5)
