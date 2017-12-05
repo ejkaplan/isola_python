@@ -69,6 +69,7 @@ class isola_game(object):
                 move, wall = async_result.get(timeout=self.clock[turn])
                 end = time.time()
                 self.clock[turn] -= end-self.start_time
+                pool.terminate()
             else:
                 move, wall = self.players[turn].make_move()
             if move not in self.get_adjacent(self.positions[turn]):
@@ -80,6 +81,7 @@ class isola_game(object):
             if f:
                 f.write("{0[0]}, {0[1]}, {1[0]}, {1[1]}\n".format(move, wall))
         except:
+            print(sys.exc_info())
             return (turn+1)%2
         return -1
     
@@ -103,11 +105,12 @@ class isola_game(object):
                 self.done = True
                 if verbose:
                     print("{} wins!".format(self.players[winner].name))
+                if f:
+                    f.flush()
+                    f.close()
                 return winner
             else: turn = (turn+1)%2
-        if f:
-            f.flush()
-            f.close()
+        
     
     def get_board(self):
         '''

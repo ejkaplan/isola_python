@@ -14,7 +14,6 @@ class random_player(isola_player):
         super().__init__(name)
         
     def make_move(self):
-        sleep(0.1)
         board = self.get_board()
         open_spaces = [(r,c) for r in range(len(board)) for c in range(len(board[r])) if board[r][c] == 0]
         players = [(r,c) for r in range(len(board)) for c in range(len(board[r])) if board[r][c] > 0]
